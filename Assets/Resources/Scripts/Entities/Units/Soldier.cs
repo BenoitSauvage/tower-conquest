@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Soldier : MonoBehaviour {
+public class Soldier : Unit {
 
-    public void DrawMovingCell () {
+    public override void DrawMovingCell () {
         float maxX = transform.position.x + (GV.SOLDIER_MOVING_RANGE * GV.GRID_CELL_SIZE);
         float minX = transform.position.x - (GV.SOLDIER_MOVING_RANGE * GV.GRID_CELL_SIZE);
 

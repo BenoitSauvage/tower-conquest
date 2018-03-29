@@ -9,10 +9,8 @@ public class InputManager {
 
     private InputManager() { }
 
-    public static InputManager Instance
-    {
-        get
-        {
+    public static InputManager Instance {
+        get {
             if (instance == null)
                 instance = new InputManager();
 
@@ -21,10 +19,12 @@ public class InputManager {
     }
     #endregion singleton
 
+    public bool isPlacingUnit = false;
+
     private bool hasClicked;
 
     public void Update (float _dt) {
-        if (Input.GetMouseButtonDown(0)) {
+        if (!isPlacingUnit && Input.GetMouseButtonDown(0)) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit = new RaycastHit();
             Physics.Raycast(ray, out hit);
@@ -37,6 +37,25 @@ public class InputManager {
             } else {
                 hasClicked = false;
                 UnitManager.Instance.DeselectUnit();
+            }
+        }
+
+        if (isPlacingUnit) {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit = new RaycastHit();
+            Physics.Raycast(ray, out hit);
+
+            if (hit.collider && hit.collider.CompareTag(GV.CELL_PLACING_TAG)) {
+                GridManager.Instance.ShowUnitGhost(hit.point);
+            }
+
+            if (Input.GetMouseButtonDown(0)) {
+                if (hit.collider && (hit.collider.CompareTag(GV.CELL_PLACING_TAG) || hit.collider.CompareTag(GV.GHOST_UNIT_TAG)))
+                    GridManager.Instance.PlaceUnit();
+                else
+                    GridManager.Instance.RemovePlacingCell();
+                
+                isPlacingUnit = false;
             }
         }
     }

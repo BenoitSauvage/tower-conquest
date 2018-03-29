@@ -21,9 +21,14 @@ public class UnitManager
     #endregion singleton
 
     private Transform selectedUnit;
+    private Transform unitsParent;
 
-    public void Init () {
-        // Initialization
+    public void Init (Transform _unitsParent) {
+        unitsParent = _unitsParent;
+    }
+
+    public Transform GetUnitsParent () {
+        return unitsParent;
     }
 
     public void SelectUnit (Transform _unit) {

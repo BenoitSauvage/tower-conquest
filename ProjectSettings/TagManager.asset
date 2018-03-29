@@ -8,6 +8,8 @@ TagManager:
   - UnitCatapulte
   - UnitTower
   - MovingCell
+  - PlacingCell
+  - GhostUnit
   layers:
   - Default
   - TransparentFX
@@ -47,6 +49,9 @@ TagManager:
     locked: 0
   - name: Map
     uniqueID: 2862163663
+    locked: 0
+  - name: PlacingCell
+    uniqueID: 809713345
     locked: 0
   - name: Moving Cell
     uniqueID: 4280438057
