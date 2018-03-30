@@ -27,10 +27,8 @@ public class GameManager {
     public void Update (float _dt) {
         turnDuration += _dt;
 
-        if (turnDuration >= GV.MAX_TURN_DURATION) {
-            turnDuration = 0f;
+        if (turnDuration >= GV.MAX_TURN_DURATION)
             NextTurn();
-        }
     }
 
     public float GetTurnCount () {
@@ -46,11 +44,15 @@ public class GameManager {
     }
 
     public void NextTurn () {
+        turnDuration = 0f;
+
         if (playerPlaying >= GV.MAX_PLAYER) {
             playerPlaying = 1;
             turnCount += 1;
         } else
             playerPlaying += 1;
+
+        UIManager.Instance.UpdatePlayerText(playerPlaying);
 
         InputManager.Instance.NextTurn();
         UnitManager.Instance.NextTurn();
