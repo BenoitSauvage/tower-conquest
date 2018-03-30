@@ -31,25 +31,30 @@ public class UnitManager
         return unitsParent;
     }
 
+    public void NextTurn() {
+        selectedUnit = null;
+    }
+
     public void SelectUnit (Transform _unit) {
         selectedUnit = _unit;
 
-        GridManager.Instance.RemoveCellView();
+        if ((int)selectedUnit.GetComponent<Unit>().GetPlayer() == (int)GameManager.Instance.GetCurrentPlayer()) {
+            GridManager.Instance.RemoveCellView();
 
-        switch (selectedUnit.tag) {
-            case "UnitSoldier":
-                selectedUnit.GetComponent<Soldier>().DrawMovingCell();
-                break;
-            case "UnitCatapulte":
-                break;
-            case "UnitTower":
-                break;
+            switch (selectedUnit.tag) {
+                case "UnitSoldier":
+                    selectedUnit.GetComponent<Soldier>().DrawMovingCell();
+                    break;
+                case "UnitCatapulte":
+                    break;
+                case "UnitTower":
+                    break;
+            }
         }
     }
 
     public void MoveUnit (Transform _destination) {
         Vector2Int oldPos = new Vector2Int((int)selectedUnit.position.x, (int)selectedUnit.position.z);
-
         selectedUnit.position = new Vector3(_destination.position.x, selectedUnit.position.y, _destination.position.z);
 
         GridManager.Instance.UpdateGrid(selectedUnit, oldPos);

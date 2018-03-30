@@ -20,7 +20,6 @@ public class InputManager {
     #endregion singleton
 
     public bool isPlacingUnit = false;
-
     private bool hasClicked;
 
     public void Update (float _dt) {
@@ -58,5 +57,10 @@ public class InputManager {
                 isPlacingUnit = false;
             }
         }
+    }
+
+    public void NextTurn () {
+        isPlacingUnit = false;
+        hasClicked = false;
     }
 }

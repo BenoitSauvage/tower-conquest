@@ -51,5 +51,9 @@ public class GameManager {
             turnCount += 1;
         } else
             playerPlaying += 1;
+
+        InputManager.Instance.NextTurn();
+        UnitManager.Instance.NextTurn();
+        GridManager.Instance.NextTurn();
     }
 }

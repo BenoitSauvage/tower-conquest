@@ -55,6 +55,11 @@ public class GridManager {
         }
     }
 
+    public void NextTurn () {
+        RemovePlacingCell();
+        RemoveCellView();
+    }
+
     public void ShowUnitGhost(Vector3 _position) {
         int x = (int)Mathf.Round(_position.x / GV.GRID_CELL_SIZE) * GV.GRID_CELL_SIZE;
         int z = (int)Mathf.Round(_position.z / GV.GRID_CELL_SIZE) * GV.GRID_CELL_SIZE;
@@ -78,10 +83,10 @@ public class GridManager {
             unit.transform.position = ghostUnit.transform.position;
             unit.transform.SetParent(UnitManager.Instance.GetUnitsParent());
 
-            MeshRenderer renderer = unit.GetComponent<MeshRenderer>();
-            Color color = renderer.material.color;
-            color.a = 1f;
-            renderer.material.color = color;
+            Material material = Material.Instantiate(
+                Resources.Load<Material>("Materials/Player_" + GameManager.Instance.GetCurrentPlayer()
+            ));
+            unit.GetComponent<Renderer>().material = material;
 
             UpdateGrid(unit.transform);
         }
@@ -90,15 +95,6 @@ public class GridManager {
     }
 
     public void ShowPlayerCells () {
-        if (ghostUnit) {
-            MeshRenderer renderer = ghostUnit.GetComponent<MeshRenderer>();
-            Color color = renderer.material.color;
-            color.a = .2f;
-            renderer.material.color = color;
-            ghostUnit.name = "Placing Unit";
-            ghostUnit.transform.SetParent(UnitManager.Instance.GetUnitsParent());
-        }
-
         float player = GameManager.Instance.GetCurrentPlayer();
         int gridSize = GridManager.instance.GetMaxXY();
 
@@ -129,7 +125,20 @@ public class GridManager {
                 break;
         }
 
+        ghostUnit.name = "Placing Unit";
+        ghostUnit.transform.SetParent(UnitManager.Instance.GetUnitsParent());
         ghostUnit.transform.tag = GV.GHOST_UNIT_TAG;
+        ghostUnit.transform.position = new Vector3(-500, 0, -500);
+
+        Material material = Material.Instantiate(
+            Resources.Load<Material>("Materials/Player_" + GameManager.Instance.GetCurrentPlayer())
+        );
+        Color color = material.color;
+        color.a = .2f;
+
+        material.color = color;
+        ghostUnit.GetComponent<Renderer>().material = material;
+
         ghostUnitType = _type;
     }
 

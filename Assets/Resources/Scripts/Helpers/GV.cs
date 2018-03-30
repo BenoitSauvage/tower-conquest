@@ -9,7 +9,7 @@ public class GV {
 
     // GAME
     public static readonly float MAX_PLAYER = 2f;
-    public static readonly float MAX_TURN_DURATION = 25f;
+    public static readonly float MAX_TURN_DURATION = 10f;
     public static readonly float PLAYER_SPAWN_AREA_SIZE = 2f;
 
     // UNITS
@@ -21,6 +21,7 @@ public class GV {
 
     // SOLDIER
     public static readonly int SOLDIER_MOVING_RANGE = 2;
+    public static readonly float SOLDIER_MAX_LIFE = 20f;
 
     // PLACEMENT / DEPLACEMENT
     public static readonly string CELL_PLACING_TAG = "PlacingCell";
