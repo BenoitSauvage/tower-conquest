@@ -75,6 +75,7 @@ public class GridManager {
             case GV.UNIT_TYPE.CATAPULTE:
             case GV.UNIT_TYPE.SOLDIER:
                 unit = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Units/Soldier"));
+                unit.GetComponent<Unit>().Init();
                 unit.name = "Soldier";
                 break;
         }
@@ -83,11 +84,14 @@ public class GridManager {
             unit.transform.position = ghostUnit.transform.position;
             unit.transform.SetParent(UnitManager.Instance.GetUnitsParent());
 
-            Material material = Material.Instantiate(
-                Resources.Load<Material>("Materials/Player_" + GameManager.Instance.GetCurrentPlayer()
-            ));
-            unit.GetComponent<Renderer>().material = material;
+            foreach (Transform child in unit.transform) {
+                child.GetComponent<Renderer>().material = Material.Instantiate(
+                    Resources.Load<Material>("Materials/Player_" + GameManager.Instance.GetCurrentPlayer()
+                ));
+            }
 
+            PlayerManager.Instance.UpdateCoins(unit.GetComponent<Unit>().GetCost());
+            UIManager.Instance.UpdatePlayerInfos();
             UpdateGrid(unit.transform);
         }
        
@@ -135,9 +139,10 @@ public class GridManager {
         );
         Color color = material.color;
         color.a = .2f;
-
         material.color = color;
-        ghostUnit.GetComponent<Renderer>().material = material;
+
+        foreach (Transform child in ghostUnit.transform)
+            child.GetComponent<Renderer>().material = material;
 
         ghostUnitType = _type;
     }

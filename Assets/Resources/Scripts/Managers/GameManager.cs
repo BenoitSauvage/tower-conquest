@@ -21,8 +21,12 @@ public class GameManager {
 
     private float turnCount = 1;
     private float turnDuration = 0f;
-
     private float playerPlaying = 1;
+
+
+    public void Init () {
+        // ...
+    }
 
     public void Update (float _dt) {
         turnDuration += _dt;
@@ -52,10 +56,11 @@ public class GameManager {
         } else
             playerPlaying += 1;
 
-        UIManager.Instance.UpdatePlayerText(playerPlaying);
-
         InputManager.Instance.NextTurn();
+        PlayerManager.Instance.NextTurn(turnCount);
         UnitManager.Instance.NextTurn();
         GridManager.Instance.NextTurn();
+
+        UIManager.Instance.NextTurn(turnCount, playerPlaying);
     }
 }

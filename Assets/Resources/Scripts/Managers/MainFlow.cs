@@ -14,23 +14,30 @@ public class MainFlow : MonoBehaviour {
 
     [Space(10)]
     [Header("UI")]
+    [Tooltip("Group holding unit buttons")]
+    public RectTransform unitButtons;
     [Tooltip("Text showing which player is playing")]
     public Text player;
     [Tooltip("Text showing how mush coins the player has")]
     public Text coins;
+    [Tooltip("Text showing turn number")]
+    public Text turn;
 
 	// Use this for initialization
 	void Start () {
-        UIManager.Instance.Init(player, coins);
+        PlayerManager.Instance.Init();
+        GameManager.Instance.Init();
         GridManager.Instance.Init(gridSize, units);
         UnitManager.Instance.Init(units);
+
+        UIManager.Instance.Init(turn, player, coins, unitButtons);
 	}
 	
 	// Update is called once per frame
 	void Update () {
         float dt = Time.deltaTime;
 
-        GameManager.Instance.Update(dt);
         InputManager.Instance.Update(dt);
+        GameManager.Instance.Update(dt);
 	}
 }

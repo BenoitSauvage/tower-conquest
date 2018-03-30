@@ -46,6 +46,7 @@ public class UnitManager
                     selectedUnit.GetComponent<Soldier>().DrawMovingCell();
                     break;
                 case "UnitCatapulte":
+                    selectedUnit.GetComponent<Catapulte>().DrawMovingCell();
                     break;
                 case "UnitTower":
                     break;

@@ -5,11 +5,14 @@ using UnityEngine;
 public class Unit : MonoBehaviour {
 
     protected GV.UNIT_TYPE unitType;
-    protected float maxLife, life;
+    protected float maxLife, life, coinCost;
 
     protected float movingRange;
-
     protected float player;
+
+    public virtual void Init () {
+        Debug.LogWarning("INIT METHOD HAS TO BE IMPLEMENTED");
+    }
 
     public void DrawMovingCell() { 
         float maxX = transform.position.x + (movingRange * GV.GRID_CELL_SIZE);
@@ -38,5 +41,9 @@ public class Unit : MonoBehaviour {
 
     public float GetPlayer () {
         return player;
+    }
+
+    public float GetCost () {
+        return coinCost;
     }
 }
