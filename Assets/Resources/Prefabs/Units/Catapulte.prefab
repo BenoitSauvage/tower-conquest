@@ -36,8 +36,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4100463971584548}
-  - component: {fileID: 135985919411298156}
   - component: {fileID: 114778279646798970}
+  - component: {fileID: 65819988905645608}
   m_Layer: 0
   m_Name: Catapulte
   m_TagString: UnitCatapulte
@@ -113,6 +113,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1148017976120184}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65819988905645608
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1329693946456958}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!114 &114778279646798970
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,15 +136,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8070054b3dd4a158ce0b6c43c0bfa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &135985919411298156
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1329693946456958}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 2.5, y: 1.5, z: 2.5}

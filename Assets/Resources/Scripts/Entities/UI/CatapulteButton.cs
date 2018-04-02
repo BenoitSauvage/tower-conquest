@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoldierButton : UnitButton {
+public class CatapulteButton : UnitButton {
 
     public override void Init() {
         base.Init();
 
-        cost = GV.SOLDIER_COINS_COST;
-        unitType = GV.UNIT_TYPE.SOLDIER;
+        cost = GV.CATAPULTE_COINS_COST;
+        unitType = GV.UNIT_TYPE.CATAPULTE;
     }
 }

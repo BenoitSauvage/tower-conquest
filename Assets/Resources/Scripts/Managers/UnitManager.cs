@@ -38,19 +38,11 @@ public class UnitManager
     public void SelectUnit (Transform _unit) {
         selectedUnit = _unit;
 
+        Debug.Log(selectedUnit.name);
+
         if ((int)selectedUnit.GetComponent<Unit>().GetPlayer() == (int)GameManager.Instance.GetCurrentPlayer()) {
             GridManager.Instance.RemoveCellView();
-
-            switch (selectedUnit.tag) {
-                case "UnitSoldier":
-                    selectedUnit.GetComponent<Soldier>().DrawMovingCell();
-                    break;
-                case "UnitCatapulte":
-                    selectedUnit.GetComponent<Catapulte>().DrawMovingCell();
-                    break;
-                case "UnitTower":
-                    break;
-            }
+            selectedUnit.GetComponent<Unit>().DrawMovingCell();
         }
     }
 

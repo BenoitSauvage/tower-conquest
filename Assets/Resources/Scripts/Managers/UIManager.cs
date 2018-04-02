@@ -32,6 +32,7 @@ public class UIManager {
 
         UpdatePlayerText(GameManager.Instance.GetCurrentPlayer());
         UpdateCoinsText(PlayerManager.Instance.GetPlayerCoins(GameManager.Instance.GetCurrentPlayer()));
+        InitButtons();
         UpdateButtons(GameManager.Instance.GetCurrentPlayer());
     }
 
@@ -66,6 +67,13 @@ public class UIManager {
     public void UpdatePlayerInfos () {
         UpdateCoinsText(PlayerManager.Instance.GetPlayerCoins(GameManager.Instance.GetCurrentPlayer()));
         UpdateButtons(GameManager.Instance.GetCurrentPlayer());
+    }
+
+    private void InitButtons () {
+        foreach (Transform button in buttons) {
+            UnitButton btn = button.GetComponent<UnitButton>();
+            btn.Init();
+        }
     }
 
     private void UpdateButtons (float _player) {

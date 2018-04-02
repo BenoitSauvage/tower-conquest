@@ -11,10 +11,10 @@ public class Unit : MonoBehaviour {
     protected float player;
 
     public virtual void Init () {
-        Debug.LogWarning("INIT METHOD HAS TO BE IMPLEMENTED");
+        player = GameManager.Instance.GetCurrentPlayer();
     }
 
-    public void DrawMovingCell() { 
+    public void DrawMovingCell() {
         float maxX = transform.position.x + (movingRange * GV.GRID_CELL_SIZE);
         float minX = transform.position.x - (movingRange * GV.GRID_CELL_SIZE);
 

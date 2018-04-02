@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class Catapulte : Unit {
 
-    private void Start() {
+    public override void Init() {
+        base.Init();
+
         maxLife = GV.CATAPULTE_MAX_LIFE;
         movingRange = GV.CATAPULTE_MOVING_RANGE;
         coinCost = GV.CATAPULTE_COINS_COST;
 
         life = maxLife;
-        player = GameManager.Instance.GetCurrentPlayer();
+    }
 
+    private void Start() {
         foreach (Transform child in transform) {
             child.GetComponent<Renderer>().material = Material.Instantiate(
-               Resources.Load<Material>("Materials/Player_" + player)
-           );
+                Resources.Load<Material>("Materials/Player_" + GameManager.Instance.GetCurrentPlayer())
+            );
         }
     }
 }

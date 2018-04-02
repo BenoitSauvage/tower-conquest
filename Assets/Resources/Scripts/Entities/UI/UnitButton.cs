@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UnitButton : MonoBehaviour {
 
+    [HideInInspector]
     public GV.UNIT_TYPE unitType;
 
     protected float cost;
@@ -12,7 +13,7 @@ public class UnitButton : MonoBehaviour {
 
     Image image;
 
-	private void Start() {
+	public virtual void Init() {
         image = GetComponent<Image>();
 	}
 
@@ -27,12 +28,10 @@ public class UnitButton : MonoBehaviour {
 
     public void Toggle (bool _value) {
         isEnabled = _value;
-        /*
-        if (!isEnabled)
-            image.sprite = Resources.Load<Sprite>("Images/unit_button_disable");
-        else
-            image.sprite = Resources.Load<Sprite>("Images/unit_button_enable");
-        */
+
+        Color color = image.color;
+        color.a = (isEnabled) ? 1f : .2f;
+        image.color = color;
     }
 
     public float GetCost() {
