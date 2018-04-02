@@ -94,8 +94,6 @@ public class UIManager {
     }
 
     public void UpdateActionButtons() {
-        Debug.Log("Update");
-
         actionMoveButton.UpdateButton();
         actionAttackButton.UpdateButton();
     }

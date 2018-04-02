@@ -11,6 +11,10 @@ public class Soldier : Unit {
         movingRange = GV.SOLDIER_MOVING_RANGE;
         coinCost = GV.SOLDIER_COINS_COST;
 
+        attackMaxRange = GV.SOLDIER_MAX_ATTACK_RANGE;
+        attackMinRange = GV.SOLDIER_MIN_ATTACK_RANGE;
+        attackDamage = GV.SOLDIER_DAMAGE;
+
         life = maxLife;
     }
 

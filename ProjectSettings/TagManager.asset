@@ -10,6 +10,7 @@ TagManager:
   - MovingCell
   - PlacingCell
   - GhostUnit
+  - AttackCell
   layers:
   - Default
   - TransparentFX

@@ -44,21 +44,37 @@ public class UnitManager
         selectedUnit = _unit;
 
         if ((int)selectedUnit.GetComponent<Unit>().GetPlayer() == (int)GameManager.Instance.GetCurrentPlayer()) {
-            GridManager.Instance.RemoveCellView();
-            selectedUnit.GetComponent<Unit>().DrawMovingCell();
+            switch (InputManager.Instance.GetActionType()) {
+                case GV.ACTION_TYPE.ATTACK:
+                    GridManager.Instance.RemoveAttackView();
+                    selectedUnit.GetComponent<Unit>().DrawAttackCell();
+                    break;
+                case GV.ACTION_TYPE.MOVE:
+                    GridManager.Instance.RemoveCellView();
+                    selectedUnit.GetComponent<Unit>().DrawMovingCell();
+                    break;
+            }
         }
     }
 
-    public void MoveUnit (Transform _destination) {
-        Vector2Int oldPos = new Vector2Int((int)selectedUnit.position.x, (int)selectedUnit.position.z);
-        selectedUnit.GetComponent<Unit>().Move(_destination);
+    public void MoveOrAttackUnit (Transform _target) {
+        switch (InputManager.Instance.GetActionType()) {
+            case GV.ACTION_TYPE.ATTACK:
+                selectedUnit.GetComponent<Unit>().Attack(_target);
+                GridManager.Instance.RemoveAttackView();
+                break;
+            case GV.ACTION_TYPE.MOVE:
+                Vector2Int oldPos = new Vector2Int((int)selectedUnit.position.x, (int)selectedUnit.position.z);
+                selectedUnit.GetComponent<Unit>().Move(_target);
 
-        GridManager.Instance.UpdateGrid(selectedUnit, oldPos);
-        GridManager.Instance.RemoveCellView();
-
+                GridManager.Instance.UpdateGrid(selectedUnit, oldPos);
+                GridManager.Instance.RemoveCellView();
+                break;           
+        }
     }
 
     public void DeselectUnit () {
         GridManager.Instance.RemoveCellView();
+        GridManager.Instance.RemoveAttackView();
     }
 }

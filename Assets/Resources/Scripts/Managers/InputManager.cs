@@ -30,11 +30,17 @@ public class InputManager {
             RaycastHit hit = new RaycastHit();
             Physics.Raycast(ray, out hit);
 
-            if (hit.collider && (hit.collider.CompareTag(GV.UNIT_TAG_SOLDIER) || hit.collider.CompareTag(GV.UNIT_TAG_CATAPULTE))) {
+            if (!hasClicked && hit.collider && (hit.collider.CompareTag(GV.UNIT_TAG_SOLDIER) || hit.collider.CompareTag(GV.UNIT_TAG_CATAPULTE))) {
                 hasClicked = true;
                 UnitManager.Instance.SelectUnit(hit.collider.transform);
-            } else if (hasClicked && hit.collider && hit.collider.CompareTag(GV.CELL_MOVING_TAG)) {
-                UnitManager.Instance.MoveUnit(hit.collider.transform);
+            } else if (
+                hasClicked && hit.collider 
+                && (
+                    hit.collider.CompareTag(GV.CELL_MOVING_TAG) 
+                    || hit.collider.CompareTag(GV.CELL_ATTACK_TAG) 
+                    || (int)hit.collider.transform.GetComponent<Unit>().GetPlayer() != (int)GameManager.Instance.GetCurrentPlayer()
+                )) {
+                UnitManager.Instance.MoveOrAttackUnit(hit.collider.transform);
             } else {
                 hasClicked = false;
                 UnitManager.Instance.DeselectUnit();
@@ -65,7 +71,7 @@ public class InputManager {
         isPlacingUnit = false;
         hasClicked = false;
 
-        actionType = GV.ACTION_TYPE.MOVE;
+        UpdateActionType(GV.ACTION_TYPE.MOVE);
     }
 
     public GV.ACTION_TYPE GetActionType() {

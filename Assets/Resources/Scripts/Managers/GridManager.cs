@@ -25,8 +25,9 @@ public class GridManager {
     private Dictionary<Vector2Int, Transform> grid = new Dictionary<Vector2Int, Transform>();
     private List<GameObject> movingCells = new List<GameObject>();
     private List<GameObject> placingCells = new List<GameObject>();
+    private List<GameObject> attackCells = new List<GameObject>();
 
-    private GameObject movingCellParent, placingCellParent;
+    private GameObject movingCellParent, placingCellParent, attackCellParent;
     private int maxXY, minXY;
 
     public void Init (int _gridSize, Transform _units) {
@@ -52,6 +53,11 @@ public class GridManager {
         if (!placingCellParent) {
             placingCellParent = new GameObject();
             placingCellParent.name = "Placing Cell Parent";
+        }
+
+        if (!attackCellParent) {
+            attackCellParent = new GameObject();
+            attackCellParent.name = "Attack Cell Parent";
         }
     }
 
@@ -113,13 +119,13 @@ public class GridManager {
                 endSpanwArea = -gridSize + (GV.PLAYER_SPAWN_AREA_SIZE * GV.GRID_CELL_SIZE);
                 for (int z = -gridSize; z < endSpanwArea; z += GV.GRID_CELL_SIZE)
                     for (int x = gridSize; x >= -gridSize; x -= GV.GRID_CELL_SIZE) 
-                        DrawPlacingCell(x, z);
+                        DrawPlacingCell(new Vector2Int(x, z));
                 break;
             case 2:
                 endSpanwArea = gridSize - (GV.PLAYER_SPAWN_AREA_SIZE * GV.GRID_CELL_SIZE);
                 for (int z = gridSize; z > endSpanwArea; z -= GV.GRID_CELL_SIZE)
                     for (int x = gridSize; x >= -gridSize; x -= GV.GRID_CELL_SIZE)
-                        DrawPlacingCell(x, z);
+                        DrawPlacingCell(new Vector2Int(x, z));
                 break;
         }
     }
@@ -165,24 +171,57 @@ public class GridManager {
         grid[pos] = _unit;
     }
 
-    public void DrawPlacingCell (float x, float z) {
-        if (!isCellOccupied(new Vector2Int((int)x, (int)z))) {
+    public void RemoveUnit (Vector2Int _cell) {
+        Transform unit = grid[_cell];
+        grid[_cell] = null;
+
+        GameObject.Destroy(unit.gameObject);
+    }
+
+    public void DrawPlacingCell (Vector2Int _cell) {
+        if (!isCellOccupied(_cell)) {
             GameObject cell = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/PlacingCell"));
             cell.name = "Placing Cell";
-            cell.transform.position = new Vector3(x, 0, z);
+            cell.transform.position = new Vector3(_cell.x, 0, _cell.y);
             cell.transform.SetParent(placingCellParent.transform);
             placingCells.Add(cell);
         }
     }
 
-    public void DrawMovingCell (float x, float z) {
-        if (!isCellOccupied(new Vector2Int((int)x, (int)z))) {
+    public void DrawMovingCell (Vector2Int _cell) {
+        if (!isCellOccupied(_cell)) {
             GameObject cell = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/MovingCell"));
             cell.name = "Moving Cell";
-            cell.transform.position = new Vector3(x, 0, z);
+            cell.transform.position = new Vector3(_cell.x, 0, _cell.y);
             cell.transform.SetParent(movingCellParent.transform);
             movingCells.Add(cell);
         }
+    }
+
+    public void DrawAttackCell(Vector2Int _cell) {
+        GameObject cell = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/AttackCell"));
+        cell.name = "Attack Cell";
+        cell.transform.position = new Vector3(_cell.x, 0, _cell.y);
+        cell.transform.SetParent(attackCellParent.transform);
+        attackCells.Add(cell);
+    }
+
+    public void HandleFight (Transform _target, float _damage) {
+        Transform t = null;
+        Vector2Int _cell = new Vector2Int((int)_target.position.x, (int)_target.position.z);
+        grid.TryGetValue(_cell, out t);
+
+        if (t != null) {
+            Unit unit = t.GetComponent<Unit>();
+            unit.TakeDamage(_damage);
+
+            if (unit.GetLife() <= 0)
+                RemoveUnit(_cell);
+
+            Debug.Log(unit.GetLife());
+        }
+
+        RemoveAttackView();
     }
 
     public void RemoveCellView() {
@@ -191,6 +230,15 @@ public class GridManager {
                 GameObject.Destroy(cell);
 
             movingCells = new List<GameObject>();
+        }
+    }
+
+    public void RemoveAttackView() {
+        if (attackCells.Count > 0) {
+            foreach (GameObject cell in attackCells)
+                GameObject.Destroy(cell);
+
+            attackCells = new List<GameObject>();
         }
     }
 

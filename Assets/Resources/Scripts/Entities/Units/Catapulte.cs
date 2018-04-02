@@ -11,6 +11,10 @@ public class Catapulte : Unit {
         movingRange = GV.CATAPULTE_MOVING_RANGE;
         coinCost = GV.CATAPULTE_COINS_COST;
 
+        attackMaxRange = GV.CATAPULTE_MAX_ATTACK_RANGE;
+        attackMinRange = GV.CATAPULTE_MIN_ATTACK_RANGE;
+        attackDamage = GV.CATAPULTE_DAMAGE;
+
         life = maxLife;
     }
 
