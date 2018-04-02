@@ -62,5 +62,6 @@ public class GameManager {
         GridManager.Instance.NextTurn();
 
         UIManager.Instance.NextTurn(turnCount, playerPlaying);
+        InputManager.Instance.UpdateActionType(GV.ACTION_TYPE.MOVE);
     }
 }

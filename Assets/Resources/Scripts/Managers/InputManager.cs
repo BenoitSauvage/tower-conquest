@@ -20,7 +20,9 @@ public class InputManager {
     #endregion singleton
 
     public bool isPlacingUnit = false;
+
     private bool hasClicked;
+    private GV.ACTION_TYPE actionType = GV.ACTION_TYPE.MOVE;
 
     public void Update (float _dt) {
         if (!isPlacingUnit && Input.GetMouseButtonDown(0)) {
@@ -62,5 +64,16 @@ public class InputManager {
     public void NextTurn () {
         isPlacingUnit = false;
         hasClicked = false;
+
+        actionType = GV.ACTION_TYPE.MOVE;
+    }
+
+    public GV.ACTION_TYPE GetActionType() {
+        return actionType;
+    }
+
+    public void UpdateActionType (GV.ACTION_TYPE _type) {
+        actionType = _type;
+        UIManager.Instance.UpdateActionButtons();
     }
 }

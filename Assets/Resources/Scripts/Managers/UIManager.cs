@@ -23,12 +23,17 @@ public class UIManager {
     private Text turn, player, coins;
     private RectTransform buttons;
 
-    public void Init(Text _turn, Text _player, Text _coins, RectTransform _buttons) {
+    private ActionButton actionMoveButton, actionAttackButton;
+
+    public void Init(Text _turn, Text _player, Text _coins, RectTransform _buttons, ActionButton _move, ActionButton _attack) {
         turn = _turn;
         player = _player;
         coins = _coins;
 
         buttons = _buttons;
+
+        actionMoveButton = _move;
+        actionAttackButton = _attack;
 
         UpdatePlayerText(GameManager.Instance.GetCurrentPlayer());
         UpdateCoinsText(PlayerManager.Instance.GetPlayerCoins(GameManager.Instance.GetCurrentPlayer()));
@@ -88,5 +93,11 @@ public class UIManager {
         }
     }
 
+    public void UpdateActionButtons() {
+        Debug.Log("Update");
+
+        actionMoveButton.UpdateButton();
+        actionAttackButton.UpdateButton();
+    }
 
 }

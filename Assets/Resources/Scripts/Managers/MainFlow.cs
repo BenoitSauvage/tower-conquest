@@ -23,6 +23,8 @@ public class MainFlow : MonoBehaviour {
     [Tooltip("Text showing turn number")]
     public Text turn;
 
+    public Button moveButton, attackButton;
+
 	// Use this for initialization
 	void Start () {
         PlayerManager.Instance.Init();
@@ -30,7 +32,9 @@ public class MainFlow : MonoBehaviour {
         GridManager.Instance.Init(gridSize, units);
         UnitManager.Instance.Init(units);
 
-        UIManager.Instance.Init(turn, player, coins, unitButtons);
+        UIManager.Instance.Init(
+            turn, player, coins, unitButtons, moveButton.GetComponent<ActionButton>(), attackButton.GetComponent<ActionButton>()
+        );
 	}
 	
 	// Update is called once per frame

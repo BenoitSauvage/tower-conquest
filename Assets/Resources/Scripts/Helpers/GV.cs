@@ -5,6 +5,7 @@ public class GV {
 
     // GENERAL
     public enum UNIT_TYPE { SOLDIER, CATAPULTE, TOWER };
+    public enum ACTION_TYPE { MOVE, ATTACK };
     public static readonly int GRID_CELL_SIZE = 5;
 
     // GAME
