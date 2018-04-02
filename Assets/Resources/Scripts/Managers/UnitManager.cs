@@ -33,12 +33,15 @@ public class UnitManager
 
     public void NextTurn() {
         selectedUnit = null;
+
+        foreach (Transform unit in unitsParent) {
+            Unit u = unit.GetComponent<Unit>();
+            u.NextTurn();
+        }
     }
 
     public void SelectUnit (Transform _unit) {
         selectedUnit = _unit;
-
-        Debug.Log(selectedUnit.name);
 
         if ((int)selectedUnit.GetComponent<Unit>().GetPlayer() == (int)GameManager.Instance.GetCurrentPlayer()) {
             GridManager.Instance.RemoveCellView();
@@ -48,10 +51,11 @@ public class UnitManager
 
     public void MoveUnit (Transform _destination) {
         Vector2Int oldPos = new Vector2Int((int)selectedUnit.position.x, (int)selectedUnit.position.z);
-        selectedUnit.position = new Vector3(_destination.position.x, selectedUnit.position.y, _destination.position.z);
+        selectedUnit.GetComponent<Unit>().Move(_destination);
 
         GridManager.Instance.UpdateGrid(selectedUnit, oldPos);
         GridManager.Instance.RemoveCellView();
+
     }
 
     public void DeselectUnit () {

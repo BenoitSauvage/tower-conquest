@@ -8,7 +8,10 @@ public class Unit : MonoBehaviour {
     protected float maxLife, life, coinCost;
 
     protected float movingRange;
+    protected float moves = 0f;
     protected float player;
+
+    protected bool hasAttacked = false;
 
     public virtual void Init () {
         player = GameManager.Instance.GetCurrentPlayer();
@@ -31,12 +34,24 @@ public class Unit : MonoBehaviour {
                 for (float z = minZ; z <= maxZ; z += GV.GRID_CELL_SIZE) {
                     if (z >= minXY && z <= maxXY) {
                         Vector2Int cellPos = new Vector2Int((int)x, (int)z);
-                        if (Vector2Int.Distance(center, cellPos) <= movingRange * GV.GRID_CELL_SIZE)
+                        if (Vector2Int.Distance(center, cellPos) <= (movingRange - moves) * GV.GRID_CELL_SIZE)
                             GridManager.Instance.DrawMovingCell(x, z);
                     }
                 }
             }
         }
+    }
+
+    public void Move (Transform _destination) {
+        float distance = Mathf.Ceil(Vector3.Distance(transform.position, _destination.position) / GV.GRID_CELL_SIZE);
+        moves += distance;
+
+        transform.position = new Vector3(_destination.position.x, transform.position.y, _destination.position.z);
+    }
+
+    public void NextTurn () {
+        moves = 0f;
+        hasAttacked = false;
     }
 
     public float GetPlayer () {

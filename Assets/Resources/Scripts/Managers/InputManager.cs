@@ -29,7 +29,6 @@ public class InputManager {
             Physics.Raycast(ray, out hit);
 
             if (hit.collider && (hit.collider.CompareTag(GV.UNIT_TAG_SOLDIER) || hit.collider.CompareTag(GV.UNIT_TAG_CATAPULTE))) {
-                Debug.Log("here");
                 hasClicked = true;
                 UnitManager.Instance.SelectUnit(hit.collider.transform);
             } else if (hasClicked && hit.collider && hit.collider.CompareTag(GV.CELL_MOVING_TAG)) {
