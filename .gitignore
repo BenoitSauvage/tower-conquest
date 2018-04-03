@@ -35,3 +35,6 @@ sysinfo.txt
 
 # Stuff
 .DS_Store
+.idea/
+Assets/Plugins
+Assets/Plugins.meta
