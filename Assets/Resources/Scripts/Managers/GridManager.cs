@@ -217,8 +217,6 @@ public class GridManager {
 
             if (unit.GetLife() <= 0)
                 RemoveUnit(_cell);
-
-            Debug.Log(unit.GetLife());
         }
 
         RemoveAttackView();
