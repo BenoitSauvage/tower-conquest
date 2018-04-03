@@ -17,12 +17,4 @@ public class Catapulte : Unit {
 
         life = maxLife;
     }
-
-    private void Start() {
-        foreach (Transform child in transform) {
-            child.GetComponent<Renderer>().material = Material.Instantiate(
-                Resources.Load<Material>("Materials/Player_" + GameManager.Instance.GetCurrentPlayer())
-            );
-        }
-    }
 }

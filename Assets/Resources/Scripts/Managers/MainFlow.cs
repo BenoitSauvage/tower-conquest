@@ -27,7 +27,7 @@ public class MainFlow : MonoBehaviour {
     [Header("Camera")]
     public Transform cameraPivot;
     [Range(10, 100)]
-    public float cameraSpeed = 1;
+    public float cameraSpeed = 100;
 
 	// Use this for initialization
 	void Start () {

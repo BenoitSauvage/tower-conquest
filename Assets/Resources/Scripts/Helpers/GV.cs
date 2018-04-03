@@ -7,15 +7,18 @@ public class GV {
     public enum UNIT_TYPE { SOLDIER, CATAPULTE, TOWER };
     public enum ACTION_TYPE { MOVE, ATTACK };
     public static readonly int GRID_CELL_SIZE = 5;
+    public static readonly float LIFE_BAR_SCALE = 5f;
 
     // GAME
     public static readonly float MAX_PLAYER = 2f;
-    public static readonly float MAX_TURN_DURATION = 5f;
+    public static readonly float MAX_TURN_DURATION = 10f;
     public static readonly float PLAYER_SPAWN_AREA_SIZE = 2f;
     public static readonly float NEW_TURN_COINS = 10f;
     public static readonly float PLAYER_STARTING_COINS = 50f;
 
     // UNITS
+    public static readonly string LIFE_BAR_TAG = "LifeBar";
+    public static readonly string GENERIC_UNIT_TAG = "UnitPart";
     public static readonly string UNIT_TAG_SOLDIER = "UnitSoldier";
     public static readonly string UNIT_TAG_CATAPULTE = "UnitCatapulte";
     public static readonly string UNIT_TAG_TOWER = "UnitTower";
@@ -32,8 +35,8 @@ public class GV {
 
     // CATAPULTE
     public static readonly int CATAPULTE_MOVING_RANGE = 1;
-    public static readonly int CATAPULTE_MIN_ATTACK_RANGE = 3;
-    public static readonly int CATAPULTE_MAX_ATTACK_RANGE = 5;
+    public static readonly int CATAPULTE_MIN_ATTACK_RANGE = 2;
+    public static readonly int CATAPULTE_MAX_ATTACK_RANGE = 3;
     public static readonly float CATAPULTE_MAX_LIFE = 50f;
     public static readonly float CATAPULTE_COINS_COST = 30f;
     public static readonly float CATAPULTE_DAMAGE = 25f;

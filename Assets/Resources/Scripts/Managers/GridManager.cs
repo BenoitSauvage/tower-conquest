@@ -95,9 +95,10 @@ public class GridManager {
             unit.transform.SetParent(UnitManager.Instance.GetUnitsParent());
 
             foreach (Transform child in unit.transform) {
-                child.GetComponent<Renderer>().material = Material.Instantiate(
-                    Resources.Load<Material>("Materials/Player_" + GameManager.Instance.GetCurrentPlayer()
-                ));
+                if (child.CompareTag(GV.GENERIC_UNIT_TAG))
+                    child.GetComponent<Renderer>().material = Material.Instantiate(
+                        Resources.Load<Material>("Materials/Player_" + GameManager.Instance.GetCurrentPlayer()
+                    ));
             }
 
             PlayerManager.Instance.UpdateCoins(unit.GetComponent<Unit>().GetCost());
@@ -154,7 +155,8 @@ public class GridManager {
         material.color = color;
 
         foreach (Transform child in ghostUnit.transform)
-            child.GetComponent<Renderer>().material = material;
+            if (child.CompareTag(GV.GENERIC_UNIT_TAG))
+                child.GetComponent<Renderer>().material = material;
 
         ghostUnitType = _type;
     }

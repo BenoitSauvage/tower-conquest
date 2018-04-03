@@ -15,8 +15,22 @@ public class Unit : MonoBehaviour {
     protected float player;
 
     protected bool hasAttacked = false;
+    protected Transform lifeBar;
 
-    public virtual void Init () {
+    private void Start() {
+        foreach (Transform child in transform) {
+            if (child.CompareTag(GV.GENERIC_UNIT_TAG))
+                child.GetComponent<Renderer>().material = Material.Instantiate(
+                    Resources.Load<Material>("Materials/Player_" + GameManager.Instance.GetCurrentPlayer())
+                );
+            if (child.CompareTag(GV.LIFE_BAR_TAG))
+                lifeBar = child;
+        }
+    }
+
+	public virtual void Init () {
+        moves = movingRange;
+        hasAttacked = true;
         player = GameManager.Instance.GetCurrentPlayer();
     }
 
@@ -91,6 +105,11 @@ public class Unit : MonoBehaviour {
 
     public void TakeDamage (float _damage) {
         life -= _damage;
+
+        Vector3 lifeScale = lifeBar.localScale;
+
+        lifeScale.x = (life / maxLife) * GV.LIFE_BAR_SCALE;
+        lifeBar.localScale = lifeScale;
     }
 
     public void NextTurn () {
