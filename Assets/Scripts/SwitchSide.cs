@@ -10,7 +10,6 @@ public class SwitchSide : MonoBehaviour {
     bool turn;
     public GameObject player_1;
     public GameObject player_2;
-    public List<string> player = new List<string>{ "player_1", "player_2" };
 
     // Use this for initialization
     void Start () {
@@ -25,54 +24,31 @@ public class SwitchSide : MonoBehaviour {
 	void Update () {
         //------------------------------------------------------
         if (turn) {
+            rotation(180, false, true);
 
-            angle = transform.rotation.eulerAngles.y;
-            if (angle >= 0 && angle < 180)
-            {
-                transform.Rotate(0, Time.deltaTime * speed, 0);
-            }
-            if (angle >= (179))
-            {
-                transform.eulerAngles = new Vector3(0, 180, 0);
-                player_1.gameObject.SetActive(false);
-                player_2.gameObject.SetActive(true);
-                turn = false;
-            }
+
         }
         //------------------------------------------------------
         if (!turn) {
-            angle = transform.rotation.eulerAngles.y;
-            if (angle >= 180 && angle < 360)
-            {
-                transform.Rotate(0, Time.deltaTime * speed, 0);
-            }
-            if (angle >= (355))
-            {
-                transform.eulerAngles = new Vector3(0, 0, 0);
-                player_1.gameObject.SetActive(true);
-                player_2.gameObject.SetActive(false);
-                turn = true;
-            }
+            rotation(360, true, false);
         }
         //------------------------------------------------------
     }
 
-    /*
-    void SwitchPlayer(float angleToRotate) {
+    void rotation(float angleRotation, bool one, bool two)
+    {
         angle = transform.rotation.eulerAngles.y;
-        if (angle < angleToRotate)
+        if (angle >= (angleRotation - 180) && angle < angleRotation)
         {
-            transform.Rotate(angleToRotate - 180, Time.deltaTime * speed, 0);
-            Debug.Log("test1");
+            transform.Rotate(0, Time.deltaTime * speed, 0);
         }
-        if (angle >= (angleToRotate))
+        if (angle >= (angleRotation - 5))
         {
-            transform.eulerAngles = new Vector3(0, angleToRotate, 0);
-            Debug.Log("test2");
-            Debug.Log(angle = transform.rotation.eulerAngles.y);
+            transform.eulerAngles = new Vector3(0, angleRotation, 0);
+            player_1.gameObject.SetActive(one);
+            player_2.gameObject.SetActive(two);
+            turn = true;
         }
-
-        Debug.Log(angle = transform.rotation.eulerAngles.y);
     }
-    */
+
 }
