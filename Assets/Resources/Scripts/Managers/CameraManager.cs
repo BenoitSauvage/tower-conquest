@@ -61,6 +61,8 @@ public class CameraManager {
     }
 
     public void RotateCamera () {
+        InputManager.Instance.NextTurn();
+        GridManager.Instance.NextTurn();
         hasToRotate = true;
     }
 }
