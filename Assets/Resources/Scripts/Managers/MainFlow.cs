@@ -7,8 +7,6 @@ public class MainFlow : MonoBehaviour {
 
     [Tooltip("Grid size X * X")]
     public int gridSize = 10;
-
-    [Space(10)]
     [Tooltip("All units on map")]
     public Transform units;
 
@@ -25,8 +23,15 @@ public class MainFlow : MonoBehaviour {
 
     public Button moveButton, attackButton;
 
+    [Space(10)]
+    [Header("Camera")]
+    public Transform cameraPivot;
+    [Range(10, 100)]
+    public float cameraSpeed = 1;
+
 	// Use this for initialization
 	void Start () {
+        CameraManager.Instance.Init(cameraPivot, cameraSpeed);
         PlayerManager.Instance.Init();
         GameManager.Instance.Init();
         GridManager.Instance.Init(gridSize, units);
@@ -41,6 +46,7 @@ public class MainFlow : MonoBehaviour {
 	void Update () {
         float dt = Time.deltaTime;
 
+        CameraManager.Instance.Update(dt);
         InputManager.Instance.Update(dt);
         GameManager.Instance.Update(dt);
 	}

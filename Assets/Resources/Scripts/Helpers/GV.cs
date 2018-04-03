@@ -10,7 +10,7 @@ public class GV {
 
     // GAME
     public static readonly float MAX_PLAYER = 2f;
-    public static readonly float MAX_TURN_DURATION = 30f;
+    public static readonly float MAX_TURN_DURATION = 5f;
     public static readonly float PLAYER_SPAWN_AREA_SIZE = 2f;
     public static readonly float NEW_TURN_COINS = 10f;
     public static readonly float PLAYER_STARTING_COINS = 50f;

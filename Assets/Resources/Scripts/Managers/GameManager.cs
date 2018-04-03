@@ -31,8 +31,10 @@ public class GameManager {
     public void Update (float _dt) {
         turnDuration += _dt;
 
-        if (turnDuration >= GV.MAX_TURN_DURATION)
-            NextTurn();
+        if (turnDuration >= GV.MAX_TURN_DURATION) {
+            // turnDuration = 0f;
+            CameraManager.Instance.RotateCamera();
+        }
     }
 
     public float GetTurnCount () {

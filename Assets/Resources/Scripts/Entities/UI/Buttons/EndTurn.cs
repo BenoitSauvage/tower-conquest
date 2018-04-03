@@ -5,6 +5,6 @@ using UnityEngine;
 public class EndTurn : MonoBehaviour {
 
     public void NextTurn() {
-        GameManager.Instance.NextTurn();
+        CameraManager.Instance.RotateCamera();
     }
 }
