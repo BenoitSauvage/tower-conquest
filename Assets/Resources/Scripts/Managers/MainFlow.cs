@@ -9,6 +9,8 @@ public class MainFlow : MonoBehaviour {
     public int gridSize = 10;
     [Tooltip("All units on map")]
     public Transform units;
+    public Transform player1Castle;
+    public Transform player2Castle;
 
     [Space(10)]
     [Header("UI")]
@@ -33,7 +35,7 @@ public class MainFlow : MonoBehaviour {
 	void Start () {
         CameraManager.Instance.Init(cameraPivot, cameraSpeed);
         PlayerManager.Instance.Init();
-        GameManager.Instance.Init();
+        GameManager.Instance.Init(player1Castle, player2Castle);
         GridManager.Instance.Init(gridSize, units);
         UnitManager.Instance.Init(units);
 
@@ -49,5 +51,6 @@ public class MainFlow : MonoBehaviour {
         CameraManager.Instance.Update(dt);
         InputManager.Instance.Update(dt);
         GameManager.Instance.Update(dt);
+        GridManager.Instance.Update(dt);
 	}
 }

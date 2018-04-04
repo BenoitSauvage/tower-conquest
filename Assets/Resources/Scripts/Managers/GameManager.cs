@@ -23,9 +23,13 @@ public class GameManager {
     private float turnDuration = 0f;
     private float playerPlaying = 1;
 
+    private float winner = 0f;
 
-    public void Init () {
-        // ...
+    private Transform player1Castle, player2Castle;
+
+    public void Init (Transform _player1, Transform _player2) {
+        player1Castle = _player1;
+        player2Castle = _player2;
     }
 
     public void Update (float _dt) {
@@ -35,6 +39,10 @@ public class GameManager {
             // turnDuration = 0f;
             CameraManager.Instance.RotateCamera();
         }
+    }
+
+    public float GetWinner () {
+        return winner;
     }
 
     public float GetTurnCount () {

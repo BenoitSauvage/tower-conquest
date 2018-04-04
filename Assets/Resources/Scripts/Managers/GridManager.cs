@@ -30,6 +30,10 @@ public class GridManager {
     private GameObject movingCellParent, placingCellParent, attackCellParent;
     private int maxXY, minXY;
 
+    private bool hasUnitToRemove = false, hasUnitToKill = false;
+    private float timePassed = 0f;
+    private Vector2Int unitIndexToRemove;
+
     public void Init (int _gridSize, Transform _units) {
         // -- GRID GENERATION
         maxXY = (_gridSize * GV.GRID_CELL_SIZE) / 2;
@@ -58,6 +62,23 @@ public class GridManager {
         if (!attackCellParent) {
             attackCellParent = new GameObject();
             attackCellParent.name = "Attack Cell Parent";
+        }
+    }
+
+    public void Update (float _dt) {
+        if (hasUnitToKill) {
+            UnitManager.Instance.KillUnit(grid[unitIndexToRemove]);
+            hasUnitToKill = false;
+        }
+
+        if (hasUnitToRemove) {
+            timePassed += _dt;
+
+            if (timePassed >= GV.ANIMATION_DURATION) {
+                timePassed = 0f;
+                hasUnitToRemove = false;
+                RemoveUnit(unitIndexToRemove);
+            }
         }
     }
 
@@ -217,8 +238,11 @@ public class GridManager {
             Unit unit = t.GetComponent<Unit>();
             unit.TakeDamage(_damage);
 
-            if (unit.GetLife() <= 0)
-                RemoveUnit(_cell);
+            if (unit.GetLife() <= 0) {
+                hasUnitToKill = true;
+                hasUnitToRemove = true;
+                unitIndexToRemove = _cell;
+            }
         }
 
         RemoveAttackView();

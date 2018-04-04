@@ -453,6 +453,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSize: 10
   units: {fileID: 1659912650}
+  player1Castle: {fileID: 2009222020}
+  player2Castle: {fileID: 544944691}
   unitButtons: {fileID: 513520199}
   player: {fileID: 86229139}
   coins: {fileID: 1440283412}
@@ -1208,6 +1210,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d1c6d17179446ccae16dbe665f2f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &544944691 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4133846901296844, guid: 3cbf270204ee048119648fada834ac0e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1786765956}
 --- !u!1 &622804955
 GameObject:
   m_ObjectHideFlags: 0
@@ -2200,7 +2207,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2009222020}
+  - {fileID: 544944691}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2272,6 +2281,62 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1665797470}
+--- !u!1001 &1786765956
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1659912650}
+    m_Modifications:
+    - target: {fileID: 4133846901296844, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133846901296844, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133846901296844, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133846901296844, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133846901296844, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133846901296844, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133846901296844, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133846901296844, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23469602461685088, guid: 3cbf270204ee048119648fada834ac0e,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d24403f51b25e467a8a5adf9f48d5951, type: 2}
+    - target: {fileID: 1261782403951790, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+      propertyPath: m_Name
+      value: Castle P2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114242109509697340, guid: 3cbf270204ee048119648fada834ac0e,
+        type: 2}
+      propertyPath: playerNumber
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1986982513
 GameObject:
   m_ObjectHideFlags: 0
@@ -2342,6 +2407,62 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1986982513}
+--- !u!1001 &2009222019
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1659912650}
+    m_Modifications:
+    - target: {fileID: 4133846901296844, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133846901296844, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133846901296844, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133846901296844, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133846901296844, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133846901296844, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133846901296844, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4133846901296844, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261782403951790, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+      propertyPath: m_Name
+      value: Castle P1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114242109509697340, guid: 3cbf270204ee048119648fada834ac0e,
+        type: 2}
+      propertyPath: playerNumber
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3cbf270204ee048119648fada834ac0e, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &2009222020 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4133846901296844, guid: 3cbf270204ee048119648fada834ac0e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2009222019}
 --- !u!1 &2044810416
 GameObject:
   m_ObjectHideFlags: 0

@@ -77,4 +77,13 @@ public class UnitManager
         GridManager.Instance.RemoveCellView();
         GridManager.Instance.RemoveAttackView();
     }
+
+    public void KillUnit (Transform _unit) {
+        foreach (Transform child in _unit)
+            child.GetComponent<Renderer>().enabled = false;
+
+        Transform particles = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Particles/UnitExplosion")).transform;
+        particles.SetParent(_unit);
+        particles.localPosition = new Vector3();
+    }
 }
