@@ -22,10 +22,15 @@ public class GameManager {
     private float turnCount = 1;
     private float turnDuration = 0f;
     private float playerPlaying = 1;
-
     private float winner = 0f;
 
+    private bool isGameEnded = false;
+    private float endGameTime = 0f;
+
     private Transform player1Castle, player2Castle;
+
+    private Transform castleToFocus;
+    private Vector3 cameraStart;
 
     public void Init (Transform _player1, Transform _player2) {
         player1Castle = _player1;
@@ -33,12 +38,36 @@ public class GameManager {
     }
 
     public void Update (float _dt) {
-        turnDuration += _dt;
+        if (!isGameEnded) {
+            turnDuration += _dt;
 
-        if (turnDuration >= GV.MAX_TURN_DURATION) {
-            // turnDuration = 0f;
-            CameraManager.Instance.RotateCamera();
-        }
+            if (turnDuration >= GV.MAX_TURN_DURATION)
+                CameraManager.Instance.RotateCamera();
+        } else {
+            endGameTime += _dt;
+
+            Camera.main.transform.position = Vector3.Lerp(
+                cameraStart, castleToFocus.position, (endGameTime / 2) / GV.ENDGAME_ANIMATION_DURATION
+            );
+
+            if (endGameTime >= GV.ENDGAME_ANIMATION_DURATION) {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(GV.GAME_OVER_SCENE);
+            }
+        }     
+    }
+
+    public void EndGame (Transform _unit) {
+        isGameEnded = true;
+        cameraStart = Camera.main.transform.position;
+        castleToFocus = _unit;
+        winner = GV.MAX_PLAYER - _unit.GetComponent<Unit>().GetPlayer() + 1;
+
+        foreach (Transform child in _unit)
+            child.GetComponent<Renderer>().enabled = false;
+
+        Transform particles = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Particles/CastleExplosion")).transform;
+        particles.SetParent(_unit);
+        particles.localPosition = new Vector3();
     }
 
     public float GetWinner () {

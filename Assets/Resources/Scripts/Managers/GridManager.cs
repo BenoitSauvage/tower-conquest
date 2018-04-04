@@ -239,9 +239,13 @@ public class GridManager {
             unit.TakeDamage(_damage);
 
             if (unit.GetLife() <= 0) {
-                hasUnitToKill = true;
-                hasUnitToRemove = true;
-                unitIndexToRemove = _cell;
+                if (typeof(Castle) != unit.GetType()) {
+                    hasUnitToKill = true;
+                    hasUnitToRemove = true;
+                    unitIndexToRemove = _cell;
+                } else {
+                    GameManager.Instance.EndGame(_target);
+                }
             }
         }
 
