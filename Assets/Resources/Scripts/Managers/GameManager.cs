@@ -28,7 +28,6 @@ public class GameManager {
     private float endGameTime = 0f;
 
     private Transform player1Castle, player2Castle;
-
     private Transform castleToFocus;
 
     public void Init (Transform _player1, Transform _player2) {

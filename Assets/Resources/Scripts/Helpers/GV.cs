@@ -37,7 +37,7 @@ public class GV {
     public static readonly float SOLDIER_DAMAGE = 10f;
 
     // CATAPULTE
-    public static readonly int CATAPULTE_MOVING_RANGE = 6;
+    public static readonly int CATAPULTE_MOVING_RANGE = 1;
     public static readonly int CATAPULTE_MIN_ATTACK_RANGE = 2;
     public static readonly int CATAPULTE_MAX_ATTACK_RANGE = 3;
     public static readonly float CATAPULTE_MAX_LIFE = 50f;
@@ -53,7 +53,7 @@ public class GV {
     public static readonly float TOWER_DAMAGE = 10;
 
     // CASTLE
-    public static readonly int CASTLE_MAX_LIFE = 10;
+    public static readonly int CASTLE_MAX_LIFE = 300;
 
     // PLACEMENT / DEPLACEMENT
     public static readonly string CELL_PLACING_TAG = "PlacingCell";
