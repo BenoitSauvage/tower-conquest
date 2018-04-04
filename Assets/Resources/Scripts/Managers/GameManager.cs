@@ -45,9 +45,9 @@ public class GameManager {
                 CameraManager.Instance.RotateCamera();
         } else {
             endGameTime += _dt;
-
+            Camera.main.transform.LookAt(castleToFocus);
             Camera.main.transform.position = Vector3.Lerp(
-                cameraStart, castleToFocus.position, (endGameTime / 2) / GV.ENDGAME_ANIMATION_DURATION
+                cameraStart, (castleToFocus.position / 2), (endGameTime / 2) / GV.ENDGAME_ANIMATION_DURATION
             );
 
             if (endGameTime >= GV.ENDGAME_ANIMATION_DURATION) {

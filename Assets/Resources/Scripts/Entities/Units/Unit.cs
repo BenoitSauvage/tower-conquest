@@ -29,7 +29,6 @@ public class Unit : MonoBehaviour {
     }
 
 	public virtual void Init () {
-        moves = movingRange;
         hasAttacked = true;
         player = GameManager.Instance.GetCurrentPlayer();
     }

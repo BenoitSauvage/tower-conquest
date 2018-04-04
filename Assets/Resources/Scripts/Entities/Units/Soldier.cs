@@ -16,5 +16,6 @@ public class Soldier : Unit {
         attackDamage = GV.SOLDIER_DAMAGE;
 
         life = maxLife;
+        moves = movingRange;
     }
 }
