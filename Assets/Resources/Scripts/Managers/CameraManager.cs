@@ -21,6 +21,7 @@ public class CameraManager {
 
     private Transform camPivot;
     private float speed, angle = 1f;
+    private Vector3 cameraPos;
 
     private bool turn = true;
     private bool hasToRotate = false;
@@ -42,6 +43,7 @@ public class CameraManager {
                     camPivot.eulerAngles = new Vector3(0, 180, 0);
                     turn = false;
                     hasToRotate = false;
+                    cameraPos = Camera.main.transform.position;
                     GameManager.Instance.NextTurn();
                 }
             } else {
@@ -54,6 +56,7 @@ public class CameraManager {
                     camPivot.eulerAngles = new Vector3(0, 0, 0);
                     turn = true;
                     hasToRotate = false;
+                    cameraPos = Camera.main.transform.position;
                     GameManager.Instance.NextTurn();
                 }
             }
@@ -64,5 +67,16 @@ public class CameraManager {
         InputManager.Instance.NextTurn();
         GridManager.Instance.NextTurn();
         hasToRotate = true;
+    }
+
+    public void DampCamera (float _dt, Transform _target) {
+        var targetRotation = Quaternion.LookRotation(_target.transform.position - cameraPos);
+        Camera.main.transform.rotation = Quaternion.Slerp(
+            Camera.main.transform.rotation, targetRotation, (_dt / 2) 
+        );
+
+        Camera.main.transform.position = Vector3.Lerp(
+            cameraPos, (_target.position / 2), (_dt / 2) / GV.ENDGAME_ANIMATION_DURATION
+        );
     }
 }

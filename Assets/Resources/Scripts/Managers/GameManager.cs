@@ -30,7 +30,6 @@ public class GameManager {
     private Transform player1Castle, player2Castle;
 
     private Transform castleToFocus;
-    private Vector3 cameraStart;
 
     public void Init (Transform _player1, Transform _player2) {
         player1Castle = _player1;
@@ -45,10 +44,7 @@ public class GameManager {
                 CameraManager.Instance.RotateCamera();
         } else {
             endGameTime += _dt;
-            Camera.main.transform.LookAt(castleToFocus);
-            Camera.main.transform.position = Vector3.Lerp(
-                cameraStart, (castleToFocus.position / 2), (endGameTime / 2) / GV.ENDGAME_ANIMATION_DURATION
-            );
+            CameraManager.Instance.DampCamera(endGameTime, castleToFocus);
 
             if (endGameTime >= GV.ENDGAME_ANIMATION_DURATION) {
                 UnityEngine.SceneManagement.SceneManager.LoadScene(GV.GAME_OVER_SCENE);
@@ -58,7 +54,6 @@ public class GameManager {
 
     public void EndGame (Transform _unit) {
         isGameEnded = true;
-        cameraStart = Camera.main.transform.position;
         castleToFocus = _unit;
         winner = GV.MAX_PLAYER - _unit.GetComponent<Unit>().GetPlayer() + 1;
 
