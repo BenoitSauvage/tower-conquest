@@ -94,6 +94,12 @@ public class Unit : MonoBehaviour {
     }
 
     public void Attack (Transform _target) {
+        float player = GameManager.Instance.GetCurrentPlayer();
+        GameObject go = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Particles/Player" + player + "attack"));
+        Vector3 pos = _target.position;
+        pos.y = 2;
+        go.transform.position = pos;
+
         GridManager.Instance.HandleFight(_target, attackDamage);
         hasAttacked = true;
     }
