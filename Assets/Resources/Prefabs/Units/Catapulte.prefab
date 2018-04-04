@@ -52,8 +52,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4100463971584548}
-  - component: {fileID: 114778279646798970}
   - component: {fileID: 65819988905645608}
+  - component: {fileID: 114778279646798970}
   m_Layer: 0
   m_Name: Catapulte
   m_TagString: UnitCatapulte
@@ -197,11 +197,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -463070669
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c09febc641eb04521b9ffbad2f924224, type: 3}
-  m_Color: {r: 1, g: 0.44117647, b: 0.44117647, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

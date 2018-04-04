@@ -60,9 +60,6 @@ TagManager:
   - name: Moving Cell
     uniqueID: 4280438057
     locked: 0
-  - name: FullLifeBar
-    uniqueID: 2538637959
-    locked: 0
   - name: CurrentLIfe
     uniqueID: 3831896627
     locked: 0

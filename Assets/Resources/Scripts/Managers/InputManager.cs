@@ -30,7 +30,7 @@ public class InputManager {
             RaycastHit hit = new RaycastHit();
             Physics.Raycast(ray, out hit);
 
-            if (!hasClicked && hit.collider && (hit.collider.CompareTag(GV.UNIT_TAG_SOLDIER) || hit.collider.CompareTag(GV.UNIT_TAG_CATAPULTE))) {
+            if (!hasClicked && hit.collider && (hit.collider.CompareTag(GV.UNIT_TAG_SOLDIER) || hit.collider.CompareTag(GV.UNIT_TAG_CATAPULTE) || hit.collider.CompareTag(GV.UNIT_TAG_TOWER))) {
                 hasClicked = true;
                 UnitManager.Instance.SelectUnit(hit.collider.transform);
             } else if (

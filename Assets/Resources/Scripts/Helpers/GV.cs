@@ -50,7 +50,7 @@ public class GV {
     public static readonly int TOWER_MAX_ATTACK_RANGE = 2;
     public static readonly float TOWER_MAX_LIFE = 150;
     public static readonly float TOWER_COINS_COST = 50f;
-    public static readonly float TOWER_DAMAGE = 10;
+    public static readonly float TOWER_DAMAGE = 20;
 
     // CASTLE
     public static readonly int CASTLE_MAX_LIFE = 300;

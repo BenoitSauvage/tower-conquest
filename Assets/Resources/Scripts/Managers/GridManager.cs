@@ -99,6 +99,10 @@ public class GridManager {
 
         switch (ghostUnitType) {
             case GV.UNIT_TYPE.TOWER:
+                unit = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Units/Tower"));
+                unit.GetComponent<Unit>().Init();
+                unit.name = "Tower";
+                break;
             case GV.UNIT_TYPE.CATAPULTE:
                 unit = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Units/Catapulte"));
                 unit.GetComponent<Unit>().Init();
@@ -155,6 +159,8 @@ public class GridManager {
     public void CreateGhostUnit(GV.UNIT_TYPE _type) {
         switch (_type) {
             case GV.UNIT_TYPE.TOWER:
+                ghostUnit = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Units/Tower"));
+                break;
             case GV.UNIT_TYPE.CATAPULTE:
                 ghostUnit = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Units/Catapulte"));
                 break;
