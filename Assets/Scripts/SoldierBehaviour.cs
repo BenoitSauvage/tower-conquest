@@ -49,50 +49,21 @@ public class SoldierBehaviour : MonoBehaviour {
         else if (convertCurrentHp <= 50 && convertCurrentHp > 35)
         {
             SetActiveUnit(0, false);
-        }
-        else if (convertCurrentHp <= 35 && convertCurrentHp > 15)
-        {
-            SetActiveUnit(0, true);
-            SetActiveUnit(2, false);
-            SetActiveUnit(4, false);
-        }
-        else
-        {
-            DestroyUnit();
-        }
-    }
-    //__________________________________________________________________To Reorganize for revive
-    void ManageReviveUnit(float CurrentHp, float maxHp)
-    {
-        float convertCurrentHp = 100 * (CurrentHp / maxHp);
-
-        if (convertCurrentHp <= 100 && convertCurrentHp > 85)
-        {
-            //_____°-°_____
-        }
-        else if (convertCurrentHp <= 85 && convertCurrentHp > 65)
-        {
-            SetActiveUnit(0, false);
-        }
-        else if (convertCurrentHp <= 65 && convertCurrentHp > 50)
-        {
-            SetActiveUnit(0, true);
             SetActiveUnit(3, false);
             SetActiveUnit(1, false);
         }
-        else if (convertCurrentHp <= 50 && convertCurrentHp > 35)
-        {
-            SetActiveUnit(0, false);
-        }
         else if (convertCurrentHp <= 35 && convertCurrentHp > 15)
         {
             SetActiveUnit(0, true);
             SetActiveUnit(2, false);
             SetActiveUnit(4, false);
+            SetActiveUnit(3, false);
+            SetActiveUnit(1, false);
         }
         else
         {
             DestroyUnit();
         }
     }
+   
 }
