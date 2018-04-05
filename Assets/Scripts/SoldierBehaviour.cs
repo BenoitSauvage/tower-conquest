@@ -4,60 +4,95 @@ using UnityEngine;
 
 public class SoldierBehaviour : MonoBehaviour {
 
-    public GameObject game;
-    GameObject soldier;
+    float hp = 100;
 
-    GameObject[] soldiertest;
-    Vector3 pos;
-    int nubSoldier;
-   
-
-
-
-
-
-    // Use this for initialization
-    void Start () {
-
-    }
-	
-	// Update is called once per frame
-	void Update () {
-
-        if (Input.GetKey(KeyCode.Keypad1)) { nubSoldier = 1; }
-        if (Input.GetKey(KeyCode.Keypad2)) { nubSoldier = 2; }
-        if (Input.GetKey(KeyCode.Keypad3)) { nubSoldier = 3; }
-        if (Input.GetKey(KeyCode.Keypad4)) { nubSoldier = 4; }
-
-
-        if (Input.GetKey(KeyCode.Keypad0))
-        {
-            //inst();
-            
-            soldier = transform.GetChild(nubSoldier).gameObject;
-            //soldier.transform.position = new Vector3(0,1,0);
-            
-
-            DestroyObject(transform.GetChild(nubSoldier).gameObject);
-
-            foreach (Transform child in transform)
-            {
-                GameObject.Destroy(child.gameObject);
-            }
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.UpArrow)) {
+            ManageKillUnit( hp--, 100);
         }
-       
-
 
     }
 
-    /*
-    void inst() {
-        for (int i = 0; i <= 5; i++)
-        {
-            pos = game.transform.position + soldiers[i];
-            soldiertest[i] = Instantiate(soldier, pos, Quaternion.identity);
-            soldiertest[i].transform.parent = game.transform;
+    void SetActiveUnit(int _GetChild, bool _SetActive)
+    {
+        foreach (Transform child in transform) {
+            transform.GetChild(_GetChild).gameObject.SetActive(_SetActive);
         }
     }
-    */
+
+    void DestroyUnit()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void ManageKillUnit(float CurrentHp, float maxHp) {
+        float convertCurrentHp = 100 * (CurrentHp / maxHp);
+
+        if (convertCurrentHp <= 100 && convertCurrentHp > 85)
+        {
+            //_____°-°_____
+        }
+        else if (convertCurrentHp <= 85 && convertCurrentHp > 65)
+        {
+            SetActiveUnit(0, false);
+        }
+        else if (convertCurrentHp <= 65 && convertCurrentHp > 50)
+        {
+            SetActiveUnit(0, true);
+            SetActiveUnit(3, false);
+            SetActiveUnit(1, false);
+        }
+        else if (convertCurrentHp <= 50 && convertCurrentHp > 35)
+        {
+            SetActiveUnit(0, false);
+        }
+        else if (convertCurrentHp <= 35 && convertCurrentHp > 15)
+        {
+            SetActiveUnit(0, true);
+            SetActiveUnit(2, false);
+            SetActiveUnit(4, false);
+        }
+        else
+        {
+            DestroyUnit();
+        }
+    }
+    //__________________________________________________________________To Reorganize for revive
+    void ManageReviveUnit(float CurrentHp, float maxHp)
+    {
+        float convertCurrentHp = 100 * (CurrentHp / maxHp);
+
+        if (convertCurrentHp <= 100 && convertCurrentHp > 85)
+        {
+            //_____°-°_____
+        }
+        else if (convertCurrentHp <= 85 && convertCurrentHp > 65)
+        {
+            SetActiveUnit(0, false);
+        }
+        else if (convertCurrentHp <= 65 && convertCurrentHp > 50)
+        {
+            SetActiveUnit(0, true);
+            SetActiveUnit(3, false);
+            SetActiveUnit(1, false);
+        }
+        else if (convertCurrentHp <= 50 && convertCurrentHp > 35)
+        {
+            SetActiveUnit(0, false);
+        }
+        else if (convertCurrentHp <= 35 && convertCurrentHp > 15)
+        {
+            SetActiveUnit(0, true);
+            SetActiveUnit(2, false);
+            SetActiveUnit(4, false);
+        }
+        else
+        {
+            DestroyUnit();
+        }
+    }
 }
