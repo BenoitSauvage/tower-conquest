@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Tower : Unit {
 
+    private ParticleSystem arrows;
+    private bool arrowsLaunched = false;
+
     public override void Init() {
         base.Init();
 
@@ -17,14 +20,24 @@ public class Tower : Unit {
 
         life = maxLife;
         moves = movingRange;
+
+        foreach (Transform child in transform)
+            if (child.CompareTag("Arrows"))
+                arrows = child.GetComponent<ParticleSystem>();   
     }
 
     private void TryToAttack (Vector2Int _cell) {
+        arrows.GetComponentInParent<Transform>().gameObject.SetActive(true);
         if (GridManager.Instance.IsCellOccupied(_cell)) {
             Transform target = GridManager.Instance.GetUnitOnCell(_cell);
 
-            if ((int)target.GetComponent<Unit>().GetPlayer() != (int)player)
+            if ((int)target.GetComponent<Unit>().GetPlayer() != (int)player) {
                 GridManager.Instance.HandleFight(target, attackDamage);
+                if (!arrowsLaunched) {
+                    arrowsLaunched = true;
+                    arrows.Play();
+                }
+            }
         }
     }
 
@@ -51,5 +64,13 @@ public class Tower : Unit {
                 }
             }
         }
+    }
+
+    public void NextTurn() {
+        base.NextTurn();
+
+        arrows.Clear();
+        arrows.GetComponentInParent<Transform>().gameObject.SetActive(false);
+        arrowsLaunched = false;
     }
 }
