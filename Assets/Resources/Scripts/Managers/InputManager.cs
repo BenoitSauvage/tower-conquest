@@ -30,8 +30,6 @@ public class InputManager {
             RaycastHit hit = new RaycastHit();
             Physics.Raycast(ray, out hit);
 
-            Debug.Log(hit.collider.name);
-
             if (!hasClicked && hit.collider && (
                 hit.collider.CompareTag(GV.UNIT_TAG_SOLDIER) 
                 || hit.collider.CompareTag(GV.UNIT_TAG_CATAPULTE) 

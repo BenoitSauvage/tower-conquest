@@ -111,7 +111,7 @@ public class GridManager {
                     unit.transform.Rotate(new Vector3(0, 180, 0));
                 break;
             case GV.UNIT_TYPE.SOLDIER:
-                unit = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Units/Soldier"));
+                unit = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Units/Soldiers"));
                 unit.GetComponent<Unit>().Init();
                 unit.name = "Soldier";
                 break;
@@ -126,6 +126,13 @@ public class GridManager {
                     child.GetComponent<Renderer>().material = Material.Instantiate(
                         Resources.Load<Material>("Materials/Player_" + GameManager.Instance.GetCurrentPlayer()
                     ));
+
+                if (child.CompareTag(GV.UNIT_TAG_SOLDIER)) {
+                    foreach (Transform grand_child in child)
+                        grand_child.GetComponent<Renderer>().material = Material.Instantiate(
+                            Resources.Load<Material>("Materials/Player_" + GameManager.Instance.GetCurrentPlayer()
+                        ));
+                }
             }
 
             PlayerManager.Instance.UpdateCoins(unit.GetComponent<Unit>().GetCost());
@@ -169,7 +176,7 @@ public class GridManager {
                     ghostUnit.transform.Rotate(new Vector3(0, 180, 0));
                 break;
             case GV.UNIT_TYPE.SOLDIER:
-                ghostUnit = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Units/Soldier"));
+                ghostUnit = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Units/Soldiers"));
                 break;
         }
 
@@ -185,9 +192,14 @@ public class GridManager {
         color.a = .2f;
         material.color = color;
 
-        foreach (Transform child in ghostUnit.transform)
+        foreach (Transform child in ghostUnit.transform) {
             if (child.CompareTag(GV.GENERIC_UNIT_TAG))
                 child.GetComponent<Renderer>().material = material;
+            
+            if (child.CompareTag(GV.UNIT_TAG_SOLDIER))
+                foreach (Transform grand_child in child)
+                    grand_child.GetComponent<Renderer>().material = material;
+        }
 
         ghostUnitType = _type;
     }

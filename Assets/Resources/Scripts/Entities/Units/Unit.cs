@@ -29,7 +29,7 @@ public class Unit : MonoBehaviour {
     }
 
 	public virtual void Init () {
-        // hasAttacked = true;
+        hasAttacked = true;
         player = GameManager.Instance.GetCurrentPlayer();
     }
 
@@ -115,6 +115,9 @@ public class Unit : MonoBehaviour {
 
         lifeScale.x = (life / maxLife) * GV.LIFE_BAR_SCALE;
         lifeBar.localScale = lifeScale;
+
+        if (this.GetType() == typeof(Soldier))
+            GetComponent<SoldierBehaviour>().UpdateLife(life, maxLife);
     }
 
     public void NextTurn () {

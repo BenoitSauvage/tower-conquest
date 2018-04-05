@@ -16,6 +16,6 @@ public class Catapulte : Unit {
         attackDamage = GV.CATAPULTE_DAMAGE;
 
         life = maxLife;
-        // moves = movingRange;
+        moves = movingRange;
     }
 }
