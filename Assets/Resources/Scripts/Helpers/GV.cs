@@ -4,17 +4,17 @@ using System.Collections;
 public class GV {
 
     // GENERAL
-    public enum UNIT_TYPE { SOLDIER, CATAPULTE, TOWER };
+    public enum UNIT_TYPE { SOLDIER, CATAPULTE, TOWER, CASTLE };
     public enum ACTION_TYPE { MOVE, ATTACK };
     public static readonly int GRID_CELL_SIZE = 5;
     public static readonly float LIFE_BAR_SCALE = 5f;
     public static readonly float ANIMATION_DURATION = 2f;
-    public static readonly float ENDGAME_ANIMATION_DURATION = 4f;
+    public static readonly float ENDGAME_ANIMATION_DURATION = 8f;
     public static readonly string GAME_OVER_SCENE = "GameOver";
 
     // GAME
     public static readonly float MAX_PLAYER = 2f;
-    public static readonly float MAX_TURN_DURATION = 10f;
+    public static readonly float MAX_TURN_DURATION = 30f;
     public static readonly float PLAYER_SPAWN_AREA_SIZE = 2f;
     public static readonly float NEW_TURN_COINS = 10f;
     public static readonly float PLAYER_STARTING_COINS = 50f;
@@ -25,6 +25,7 @@ public class GV {
     public static readonly string UNIT_TAG_SOLDIER = "UnitSoldier";
     public static readonly string UNIT_TAG_CATAPULTE = "UnitCatapulte";
     public static readonly string UNIT_TAG_TOWER = "UnitTower";
+    public static readonly string UNIT_TAG_CASTLE = "Castle";
 
     public static readonly string GHOST_UNIT_TAG = "GhostUnit";
 

@@ -29,7 +29,7 @@ public class Unit : MonoBehaviour {
     }
 
 	public virtual void Init () {
-        hasAttacked = true;
+        // hasAttacked = true;
         player = GameManager.Instance.GetCurrentPlayer();
     }
 

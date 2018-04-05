@@ -107,6 +107,8 @@ public class GridManager {
                 unit = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Units/Catapulte"));
                 unit.GetComponent<Unit>().Init();
                 unit.name = "Catapulte";
+                if (GameManager.Instance.GetCurrentPlayer() >= 2)
+                    unit.transform.Rotate(new Vector3(0, 180, 0));
                 break;
             case GV.UNIT_TYPE.SOLDIER:
                 unit = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Units/Soldier"));
@@ -163,6 +165,8 @@ public class GridManager {
                 break;
             case GV.UNIT_TYPE.CATAPULTE:
                 ghostUnit = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Units/Catapulte"));
+                if (GameManager.Instance.GetCurrentPlayer() >= 2)
+                    ghostUnit.transform.Rotate(new Vector3(0, 180, 0));
                 break;
             case GV.UNIT_TYPE.SOLDIER:
                 ghostUnit = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Units/Soldier"));
@@ -208,7 +212,7 @@ public class GridManager {
     }
 
     public void DrawPlacingCell (Vector2Int _cell) {
-        if (!isCellOccupied(_cell)) {
+        if (!IsCellOccupied(_cell)) {
             GameObject cell = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/PlacingCell"));
             cell.name = "Placing Cell";
             cell.transform.position = new Vector3(_cell.x, 0, _cell.y);
@@ -218,7 +222,7 @@ public class GridManager {
     }
 
     public void DrawMovingCell (Vector2Int _cell) {
-        if (!isCellOccupied(_cell)) {
+        if (!IsCellOccupied(_cell)) {
             GameObject cell = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/MovingCell"));
             cell.name = "Moving Cell";
             cell.transform.position = new Vector3(_cell.x, 0, _cell.y);
@@ -290,7 +294,7 @@ public class GridManager {
         } 
     }
 
-    public bool isCellOccupied (Vector2Int _cell) {
+    public bool IsCellOccupied (Vector2Int _cell) {
         Transform t = null;
         grid.TryGetValue(_cell, out t);
 

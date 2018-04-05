@@ -16,12 +16,12 @@ public class Castle : Unit {
             if (child.CompareTag(GV.LIFE_BAR_TAG))
                 lifeBar = child;
         }
-
-        player = playerNumber;
     }
 
     public override void Init() {
         base.Init();
+
+        unitType = GV.UNIT_TYPE.CASTLE;
 
         maxLife = GV.CASTLE_MAX_LIFE;
         movingRange = 0;
@@ -32,5 +32,6 @@ public class Castle : Unit {
         attackDamage = 0f;
 
         life = maxLife;
+        player = playerNumber;
     }
 }

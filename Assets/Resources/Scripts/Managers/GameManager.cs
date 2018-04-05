@@ -33,6 +33,9 @@ public class GameManager {
     public void Init (Transform _player1, Transform _player2) {
         player1Castle = _player1;
         player2Castle = _player2;
+
+        player1Castle.GetComponent<Castle>().Init();
+        player2Castle.GetComponent<Castle>().Init();
     }
 
     public void Update (float _dt) {
@@ -45,6 +48,11 @@ public class GameManager {
             endGameTime += _dt;
             CameraManager.Instance.DampCamera(endGameTime, castleToFocus);
 
+            if (endGameTime >= (GV.ENDGAME_ANIMATION_DURATION / 2))
+                foreach (Transform child in castleToFocus)
+                    if (child.CompareTag(GV.GENERIC_UNIT_TAG))
+                        child.GetComponent<Renderer>().enabled = false;
+
             if (endGameTime >= GV.ENDGAME_ANIMATION_DURATION) {
                 UnityEngine.SceneManagement.SceneManager.LoadScene(GV.GAME_OVER_SCENE);
             }
@@ -55,9 +63,6 @@ public class GameManager {
         isGameEnded = true;
         castleToFocus = _unit;
         winner = GV.MAX_PLAYER - _unit.GetComponent<Unit>().GetPlayer() + 1;
-
-        foreach (Transform child in _unit)
-            child.GetComponent<Renderer>().enabled = false;
 
         Transform particles = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Particles/CastleExplosion")).transform;
         particles.SetParent(_unit);
