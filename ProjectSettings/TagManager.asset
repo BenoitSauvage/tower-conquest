@@ -4,7 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Temp
+  - UnitSoldier
+  - UnitCatapulte
+  - UnitTower
+  - MovingCell
+  - PlacingCell
+  - GhostUnit
+  - AttackCell
+  - UnitPart
+  - LifeBar
+  - Castle
+  - Arrows
   layers:
   - Default
   - TransparentFX
@@ -14,7 +24,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Units
   - 
   - 
   - 
@@ -39,6 +49,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Map
+    uniqueID: 2862163663
+    locked: 0
+  - name: PlacingCell
+    uniqueID: 809713345
+    locked: 0
+  - name: Moving Cell
+    uniqueID: 4280438057
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: CurrentLIfe
+    uniqueID: 3831896627
     locked: 0
