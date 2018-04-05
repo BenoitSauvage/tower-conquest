@@ -30,7 +30,7 @@ public class GV {
     public static readonly string GHOST_UNIT_TAG = "GhostUnit";
 
     // SOLDIER
-    public static readonly int SOLDIER_MOVING_RANGE = 20;
+    public static readonly int SOLDIER_MOVING_RANGE = 2;
     public static readonly int SOLDIER_MIN_ATTACK_RANGE = 1;
     public static readonly int SOLDIER_MAX_ATTACK_RANGE = 1;
     public static readonly float SOLDIER_MAX_LIFE = 20f;
