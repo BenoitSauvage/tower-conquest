@@ -60,7 +60,12 @@ public class UnitManager
     public void MoveOrAttackUnit (Transform _target) {
         switch (InputManager.Instance.GetActionType()) {
             case GV.ACTION_TYPE.ATTACK:
-                selectedUnit.GetComponent<Unit>().Attack(_target);
+                Unit unit = selectedUnit.GetComponent<Unit>();
+                float distance = Vector3.Distance(_target.position, selectedUnit.position);
+
+                if (distance >= (unit.attackMinRange * GV.GRID_CELL_SIZE)  && distance <= (unit.attackMaxRange * GV.GRID_CELL_SIZE))
+                    unit.Attack(_target);
+                
                 GridManager.Instance.RemoveAttackView();
                 break;
             case GV.ACTION_TYPE.MOVE:

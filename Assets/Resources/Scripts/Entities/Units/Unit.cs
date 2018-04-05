@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour {
 
+    [HideInInspector]
+    public float attackMinRange;
+    [HideInInspector]
+    public float attackMaxRange;
+
     protected GV.UNIT_TYPE unitType;
     protected float maxLife, life, coinCost;
 
     protected float movingRange;
-    protected float attackMinRange;
-    protected float attackMaxRange;
     protected float attackDamage;
     protected float moves = 0f;
     protected float player;
@@ -17,20 +20,28 @@ public class Unit : MonoBehaviour {
     protected bool hasAttacked = false;
     protected Transform lifeBar;
 
+    private float lifeBarScale;
+
     private void Start() {
         foreach (Transform child in transform) {
             if (child.CompareTag(GV.GENERIC_UNIT_TAG))
                 child.GetComponent<Renderer>().material = Material.Instantiate(
                     Resources.Load<Material>("Materials/Player_" + GameManager.Instance.GetCurrentPlayer())
                 );
-            if (child.CompareTag(GV.LIFE_BAR_TAG))
+            
+            if (child.CompareTag(GV.LIFE_BAR_TAG)) {
                 lifeBar = child;
+                lifeBarScale = lifeBar.localScale.x;
+            }
         }
     }
 
 	public virtual void Init () {
         hasAttacked = true;
         player = GameManager.Instance.GetCurrentPlayer();
+
+        if (lifeBar)
+            lifeBarScale = lifeBar.localScale.x;
     }
 
     public void DrawMovingCell() {
@@ -113,10 +124,10 @@ public class Unit : MonoBehaviour {
 
         Vector3 lifeScale = lifeBar.localScale;
 
-        lifeScale.x = (life / maxLife) * GV.LIFE_BAR_SCALE;
+        lifeScale.x = (life / maxLife) * lifeBarScale;
         lifeBar.localScale = lifeScale;
 
-        if (this.GetType() == typeof(Soldier))
+        if (GetType() == typeof(Soldier))
             GetComponent<SoldierBehaviour>().UpdateLife(life, maxLife);
     }
 
