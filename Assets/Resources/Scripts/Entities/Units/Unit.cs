@@ -131,7 +131,7 @@ public class Unit : MonoBehaviour {
             GetComponent<SoldierBehaviour>().UpdateLife(life, maxLife);
     }
 
-    public void NextTurn () {
+    public virtual void NextTurn () {
         moves = 0f;
         hasAttacked = false;
 
