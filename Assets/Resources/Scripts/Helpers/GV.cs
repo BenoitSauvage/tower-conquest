@@ -30,7 +30,7 @@ public class GV {
     public static readonly string GHOST_UNIT_TAG = "GhostUnit";
 
     // SOLDIER
-    public static readonly int SOLDIER_MOVING_RANGE = 2;
+    public static readonly int SOLDIER_MOVING_RANGE = 10;
     public static readonly int SOLDIER_MIN_ATTACK_RANGE = 1;
     public static readonly int SOLDIER_MAX_ATTACK_RANGE = 1;
     public static readonly float SOLDIER_MAX_LIFE = 20f;
@@ -51,7 +51,7 @@ public class GV {
     public static readonly int TOWER_MAX_ATTACK_RANGE = 2;
     public static readonly float TOWER_MAX_LIFE = 150;
     public static readonly float TOWER_COINS_COST = 50f;
-    public static readonly float TOWER_DAMAGE = 20;
+    public static readonly float TOWER_DAMAGE = 5;
 
     // CASTLE
     public static readonly int CASTLE_MAX_LIFE = 300;

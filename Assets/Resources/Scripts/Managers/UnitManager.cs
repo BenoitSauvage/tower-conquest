@@ -79,8 +79,15 @@ public class UnitManager
     }
 
     public void KillUnit (Transform _unit) {
-        foreach (Transform child in _unit)
-            child.GetComponent<Renderer>().enabled = false;
+        foreach (Transform child in _unit) {
+            if (child.CompareTag(GV.GENERIC_UNIT_TAG))
+                child.GetComponent<Renderer>().enabled = false;
+
+            if (child.CompareTag(GV.UNIT_TAG_SOLDIER))
+                foreach (Transform grand_child in child)
+                    grand_child.GetComponent<Renderer>().enabled = false;
+        }
+            
 
         Transform particles = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Particles/UnitExplosion")).transform;
         particles.SetParent(_unit);

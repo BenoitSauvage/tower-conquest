@@ -123,6 +123,9 @@ public class Unit : MonoBehaviour {
     public void NextTurn () {
         moves = 0f;
         hasAttacked = false;
+
+        if (GetType() == typeof(Tower))
+            GetComponent<Tower>().AutoAttack();
     }
 
     public float GetPlayer () {

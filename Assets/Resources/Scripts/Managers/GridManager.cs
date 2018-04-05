@@ -316,4 +316,11 @@ public class GridManager {
     public int GetMaxXY () {
         return maxXY;
     }
+
+    public Transform GetUnitOnCell (Vector2Int _cell) {
+        Transform t = null;
+        grid.TryGetValue(_cell, out t);
+
+        return t;
+    }
 }
