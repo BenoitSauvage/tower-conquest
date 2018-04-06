@@ -1,10 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
-public class GV {
+public class GV
+{
 
     // GENERAL
-    public enum UNIT_TYPE { SOLDIER, CATAPULTE, TOWER, CASTLE };
+    public enum UNIT_TYPE { SOLDIER, CATAPULTE, TOWER, CASTLE, BALL };
     public enum ACTION_TYPE { MOVE, ATTACK };
     public static readonly int GRID_CELL_SIZE = 5;
     public static readonly float LIFE_BAR_SCALE = 5f;
@@ -24,6 +25,7 @@ public class GV {
     public static readonly string GENERIC_UNIT_TAG = "UnitPart";
     public static readonly string UNIT_TAG_SOLDIER = "UnitSoldier";
     public static readonly string UNIT_TAG_CATAPULTE = "UnitCatapulte";
+    public static readonly string UNIT_TAG_BALL = "UnitBall";
     public static readonly string UNIT_TAG_TOWER = "UnitTower";
     public static readonly string UNIT_TAG_CASTLE = "Castle";
 
@@ -44,6 +46,15 @@ public class GV {
     public static readonly float CATAPULTE_MAX_LIFE = 50f;
     public static readonly float CATAPULTE_COINS_COST = 30f;
     public static readonly float CATAPULTE_DAMAGE = 25f;
+
+    //Ball
+    public static readonly int BALL_MOVING_RANGE = 10;
+    public static readonly int BALL_MIN_ATTACK_RANGE = 1;
+    public static readonly int BALL_MAX_ATTACK_RANGE = 1;
+    public static readonly float BALL_MAX_LIFE = 50f;
+    public static readonly float BALL_COINS_COST = 40f;
+    public static readonly float BALL_DAMAGE = 35f;
+
 
     // TOWER
     public static readonly int TOWER_MOVING_RANGE = 0;

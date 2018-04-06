@@ -115,6 +115,11 @@ public class GridManager {
                 unit.GetComponent<Unit>().Init();
                 unit.name = "Soldier";
                 break;
+            case GV.UNIT_TYPE.BALL:
+                unit = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Units/Ball"));
+                unit.GetComponent<Unit>().Init();
+                unit.name = "Ball";
+                break;
         }
 
         if (unit) {
@@ -177,6 +182,9 @@ public class GridManager {
                 break;
             case GV.UNIT_TYPE.SOLDIER:
                 ghostUnit = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Units/Soldiers"));
+                break;
+            case GV.UNIT_TYPE.BALL:
+                ghostUnit = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Units/Ball"));
                 break;
         }
 

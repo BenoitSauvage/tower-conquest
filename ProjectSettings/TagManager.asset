@@ -15,6 +15,7 @@ TagManager:
   - LifeBar
   - Castle
   - Arrows
+  - UnitBall
   layers:
   - Default
   - TransparentFX
