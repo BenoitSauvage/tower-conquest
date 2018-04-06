@@ -4,7 +4,7 @@ using System.Collections;
 public class GV {
 
     // GENERAL
-    public enum UNIT_TYPE { SOLDIER, CATAPULTE, TOWER, CASTLE };
+    public enum UNIT_TYPE { SOLDIER, TOTALY_NEW_UNIT, CATAPULTE, TOWER, CASTLE };
     public enum ACTION_TYPE { MOVE, ATTACK };
     public static readonly int GRID_CELL_SIZE = 5;
     public static readonly float LIFE_BAR_SCALE = 5f;
@@ -26,6 +26,7 @@ public class GV {
     public static readonly string UNIT_TAG_CATAPULTE = "UnitCatapulte";
     public static readonly string UNIT_TAG_TOWER = "UnitTower";
     public static readonly string UNIT_TAG_CASTLE = "Castle";
+    public static readonly string UNIT_TAG_TOTALY_NEW_UNIT = "TotalyNewUnit";
 
     public static readonly string GHOST_UNIT_TAG = "GhostUnit";
 
@@ -36,6 +37,14 @@ public class GV {
     public static readonly float SOLDIER_MAX_LIFE = 20f;
     public static readonly float SOLDIER_COINS_COST = 20f;
     public static readonly float SOLDIER_DAMAGE = 10f;
+
+    //TOTALY_NEW_UNIT
+    public static readonly int TOTALY_NEW_UNIT_MOVING_RANGE = 3;
+    public static readonly int TOTALY_NEW_UNIT_MIN_ATTACK_RANGE = 1;
+    public static readonly int TOTALY_NEW_UNIT_MAX_ATTACK_RANGE = 1;
+    public static readonly float TOTALY_NEW_UNIT_MAX_LIFE = 30f;
+    public static readonly float TOTALY_NEW_UNIT_COINS_COST = 25f;
+    public static readonly float TOTALY_NEW_UNIT_DAMAGE = 15f;
 
     // CATAPULTE
     public static readonly int CATAPULTE_MOVING_RANGE = 1;

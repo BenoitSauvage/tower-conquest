@@ -32,7 +32,8 @@ public class InputManager {
 
             if (!hasClicked && hit.collider && (
                 hit.collider.CompareTag(GV.UNIT_TAG_SOLDIER) 
-                || hit.collider.CompareTag(GV.UNIT_TAG_CATAPULTE) 
+                || hit.collider.CompareTag(GV.UNIT_TAG_CATAPULTE)
+                || hit.collider.CompareTag(GV.UNIT_TAG_TOTALY_NEW_UNIT)
             )) {
                 hasClicked = true;
                 UnitManager.Instance.SelectUnit(hit.collider.transform);

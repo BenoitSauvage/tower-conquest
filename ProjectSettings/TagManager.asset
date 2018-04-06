@@ -15,6 +15,7 @@ TagManager:
   - LifeBar
   - Castle
   - Arrows
+  - TotalyNewUnit
   layers:
   - Default
   - TransparentFX
