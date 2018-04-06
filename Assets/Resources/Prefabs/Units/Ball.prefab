@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 33588464461282872}
   - component: {fileID: 135795291678909858}
   - component: {fileID: 23641030683907050}
+  - component: {fileID: 114255315025039912}
   m_Layer: 0
   m_Name: Ball
   m_TagString: UnitBall
@@ -113,6 +114,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1843718462018440}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114255315025039912
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1843718462018440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 656b5558ce994ba42ab82523279830b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackMinRange: 0
+  attackMaxRange: 0
 --- !u!135 &135795291678909858
 SphereCollider:
   m_ObjectHideFlags: 1
