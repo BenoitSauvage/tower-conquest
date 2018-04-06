@@ -34,4 +34,8 @@ public class Castle : Unit {
         life = maxLife;
         player = playerNumber;
     }
+
+    public override void NextTurn() {
+        base.NextTurn();
+    }
 }

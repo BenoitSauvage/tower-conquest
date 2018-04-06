@@ -18,4 +18,8 @@ public class Catapulte : Unit {
         life = maxLife;
         moves = movingRange;
     }
+
+    public override void NextTurn() {
+        base.NextTurn();
+    }
 }

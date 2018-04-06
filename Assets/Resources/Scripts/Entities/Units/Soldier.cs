@@ -18,4 +18,8 @@ public class Soldier : Unit {
         life = maxLife;
         moves = movingRange;
     }
+
+    public override void NextTurn() {
+        base.NextTurn();
+    }
 }

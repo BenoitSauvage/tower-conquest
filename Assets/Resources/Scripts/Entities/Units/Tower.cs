@@ -27,7 +27,6 @@ public class Tower : Unit {
     }
 
     private void TryToAttack (Vector2Int _cell) {
-        arrows.GetComponentInParent<Transform>().gameObject.SetActive(true);
         if (GridManager.Instance.IsCellOccupied(_cell)) {
             Transform target = GridManager.Instance.GetUnitOnCell(_cell);
 
@@ -66,11 +65,10 @@ public class Tower : Unit {
         }
     }
 
-    public void NextTurn() {
+    public override void NextTurn() {
         base.NextTurn();
 
         arrows.Clear();
-        arrows.GetComponentInParent<Transform>().gameObject.SetActive(false);
         arrowsLaunched = false;
     }
 }
